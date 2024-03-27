@@ -26,6 +26,7 @@ nav {
   font-weight: 700;
   font-style: normal;
   color: white;
+  cursor: pointer;
 }
 
 ul {
@@ -36,11 +37,13 @@ ul {
 
 ul li {
   color: white;
+  cursor: pointer;
 }
 
 select {
   border: none;
 }
+
 .search-container {
   position: relative;
   display: inline-block;
@@ -233,10 +236,15 @@ strong {
   margin-bottom: 5px;
   padding: 0.5rem;
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 #infoBtn {
   background-color: #bce0f6;
   color: black;
   border: transparent;
+}
+
+.hamburger-menu {
+  cursor: pointer;
 }
