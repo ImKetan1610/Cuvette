@@ -29,7 +29,6 @@ nav {
 
 ul {
   display: flex;
-  /* border: 1px solid red; */
   justify-content: space-around;
   width: 40%;
 }
@@ -48,7 +47,6 @@ select {
 
 .search-input {
   padding: 8px 20px;
-  border: 1px solid #ccc;
   border-radius: 50vh;
   outline: none;
   width: 10rem;
@@ -65,18 +63,15 @@ select {
 
 .bodyDiv {
   margin: 8rem 4rem;
-  border: 1px solid;
 }
 
 #first {
   display: flex;
   justify-content: space-around;
   height: 50vh;
-  border: 2px solid red;
 }
 
 #first img {
-  /* width: 30%; */
   height: 100%;
   margin-right: 10px;
 }
@@ -91,6 +86,45 @@ select {
 
 #second {
   height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  position: relative;
+}
+
+#second div {
+  padding: 1.5rem;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  width: 20%;
+}
+
+.que {
+  background-color: #929dff;
+}
+
+.ans {
+  background-color: #734cf2;
+}
+
+.part {
+  background-color: #d288ff;
+}
+
+.pass {
+  background-color: black;
+}
+
+.call {
+  z-index: 10;
+  position: absolute;
+  bottom: 7%;
+  right: 0;
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-radius: 50%;
 }
 
 #last {
