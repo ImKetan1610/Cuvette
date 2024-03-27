@@ -213,6 +213,7 @@ strong {
   margin-top: 1rem;
   font-size: 1.5rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .social-media-icons {
