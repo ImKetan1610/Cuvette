@@ -65,12 +65,136 @@ select {
 
 .bodyDiv {
   margin: 8rem 4rem;
-  /* margin-top: 8rem;
-  padding: 0 10%; */
+  border: 1px solid;
 }
 
 #first {
   display: flex;
-  width: 80%;
   justify-content: space-around;
+  height: 50vh;
+  border: 2px solid red;
+}
+
+#first img {
+  /* width: 30%; */
+  height: 100%;
+  margin-right: 10px;
+}
+
+#first div {
+  background-color: #e5d8ff;
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  width: 60%;
+}
+
+#second {
+  height: 40vh;
+}
+
+#last {
+  background-color: #6f6af7;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 1rem;
+}
+
+.buttonDiv button {
+  background-color: transparent;
+  text-transform: uppercase;
+  color: white;
+  padding: 1rem;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.bookmark {
+  margin: 2.5rem 0;
+}
+/* 
+.infoDiv {
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.infoDiv div {
+  padding: 1rem 2rem;
+  word-spacing: 0.5em;
+  line-height: 2;
+}
+
+strong {
+  font-weight: bold;
+}
+
+#nxtBtn {
+  background-color: black;
+  color: white;
+  padding: 0.8rem 1.5rem;
+} */
+
+.infoDiv {
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: right;
+}
+
+h1 {
+  text-align: left;
+}
+
+.infoDiv div {
+  padding: 1rem 2rem;
+  word-spacing: 0.5em;
+  line-height: 2;
+  text-align: left;
+}
+
+strong {
+  font-weight: bold;
+}
+
+#nxtBtn {
+  background-color: black;
+  color: white;
+  padding: 0.2rem 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+
+.social-media-icons {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  /* background-color: #ffffff; */
+  /* background-color: transparent; */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-media-icons img {
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 3rem;
+  margin-bottom: 5px;
+  padding: 0.5rem;
+  background-color: #ffffff;
 }
