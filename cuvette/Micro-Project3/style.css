@@ -4,22 +4,26 @@
   background-color: rgb(59, 70, 100);
   color: white;
   box-sizing: border-box;
+  user-select: none;
 }
 
 #app {
-  margin-top: 2rem;
+   height: 100vh;
+  /* margin-top: 2rem; */
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  
 }
 
-
-#app>div:first-child{
+#app > div:first-child {
   font-size: 3rem;
   padding: 0.5rem;
   display: flex;
   justify-content: end;
   align-items: flex-end;
 }
-
-
 
 #grid-container {
   display: grid;
@@ -58,12 +62,11 @@
   grid-column-end: 5;
 }
 
-
-#grid-container > div:active{
+#grid-container > div:active {
   transition: 0.2s;
-  transform:scale(0.8);
+  transform: scale(0.8);
 }
 
-#grid-container > div:hover{
+#grid-container > div:hover {
   background-color: whitesmoke;
 }

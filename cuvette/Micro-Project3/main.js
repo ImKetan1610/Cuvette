@@ -1,12 +1,12 @@
 let inputArray = [];
-let result = 0
-let flag = true
+let result = 0;
+let flag = false;
 let app = document.getElementById("app");
-let operator = new Set(["+","-","*","/"])
+let operator = new Set(["+", "-", "*", "/"]);
 
 let inputDiv = document.createElement("div");
 inputDiv.setAttribute(
-  "style", 
+  "style",
   "background-color: black;color:white; width: 500px; height: 100px"
 );
 
@@ -17,32 +17,82 @@ inputDiv.setAttribute(
 // );
 // inputDiv.append(input);
 
-
 let buttonsDiv = document.createElement("div");
 buttonsDiv.id = "grid-container";
 buttonsDiv.addEventListener("click", (e) => {
   let val = e.target.innerText;
-  if (val == "RESET") {
+  // if (val == "RESET") {
+  //   inputArray.length = 0;
+  // } else if (val == "DEL") {
+  //   flag = !flag
+  //   inputArray.pop();
+  // } else if (val == "=") {
+  //   let res = eval(inputArray.join(""))
+  //    inputArray = [res]
+  // } else if (val.length < 2) {
+  //   if(operator.has(val)){
+  //     inputArray.push(val);
+  //     // flag = false
+  //   }else if (!operator.has(val)){
+  //     let last = inputArray.length? inputArray[inputArray.length-1]:""
+  //     if(!isNaN(last)){
+  //       inputArray.pop()
+  //       inputArray.push(last+val);
+  //     }else
+  //     inputArray.push(val);
+  //     // flag = true
+  //   }
+
+  // }
+  // // inputArray.push(e.target.innerText);
+  // inputDiv.innerText =inputArray.join("")
+  // console.log(inputArray);
+
+  if (val.length > 5) {
+    return;
+  }
+
+  if ((val == "+" || val == "*" || val == "/") && inputArray.length == 0) {
+    // continue;
+    console.log(inputArray.length);
+  } else if (
+    (val == "+" || val == "*" || val == "/" || val == "-") &&
+    inputArray.length !== 0
+  ) {
+    if (operator.has(inputArray[inputArray.length - 1])) {
+      inputArray.pop();
+      inputArray.push(val);
+    } else {
+      inputArray.push(val);
+    }
+  } else if (val === "RESET") {
     inputArray.length = 0;
-  } else if (val == "DEL") {
-    flag = !flag
+  } else if (val === "DEL") {
     inputArray.pop();
   } else if (val == "=") {
-    let res = eval(inputArray.join(""))
-     inputArray = [res]
-  } else if (val.length < 2) {
-    if(operator.has(val) && flag){
-      inputArray.push(val);
-      flag = false
-    }else if (!operator.has(val) && flag==false){
-      inputArray.push(val);
-      // flag = true
+    let res;
+    try {
+      res = eval(inputArray.join(""));
+    } catch (err) {
+      console.log(err);
+      res = "Error";
+      inputArray = [];
     }
-    
-    
+    // console.log(typeof res);
+    if (isNaN(res) || res == Infinity) {
+      res = "Invalid";
+      inputArray = [];
+    }
+    if(inputArray.length){
+      inputArray = [res]
+    }
+    inputDiv.innerText = res;
+    console.log(inputArray, res);
+    return;
+  } else {
+    inputArray.push(val);
   }
-  // inputArray.push(e.target.innerText);
-  inputDiv.innerText =inputArray.join("")
+  inputDiv.innerText = inputArray.join("");
   console.log(inputArray);
 });
 
