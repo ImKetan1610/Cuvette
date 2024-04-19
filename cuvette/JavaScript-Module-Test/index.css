@@ -21,6 +21,7 @@
   color: white;
   width: 80%;
   display: flex;
+  flex-flow: row wrap;
 }
 
 .scoreDiv h3 {
@@ -29,9 +30,38 @@
 
 .title {
   flex: 1;
-  
 }
 
 .individualScore {
-  flex: 1;
+  /* flex: 1; */
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+}
+
+.individualScore > div {
+  /* flex: 1; */
+  width: 5rem;
+  height: 5rem;
+  background-color: white;
+  /* margin-left: 10px; */
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.individualScore > div > p {
+  background-color: transparent;
+  color: black;
+  font-size: 0.75rem;
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.individualScore > div > h3 {
+  background-color: transparent;
+  color: black;
+  font-size: 2rem;
+  text-align: center;
 }

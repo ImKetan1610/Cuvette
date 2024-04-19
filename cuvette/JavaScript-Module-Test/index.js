@@ -52,3 +52,4 @@ const getResult = (userChoice) => {
   
   getResult('rock');
 */  
+
