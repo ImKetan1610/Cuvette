@@ -3,6 +3,8 @@ console.log("script index.js");
 
 /*
 
+// logic for the game 
+
 const getResult = (userChoice) => {
     const computerChoice = getComputerChoice();
     console.log(computerChoice)

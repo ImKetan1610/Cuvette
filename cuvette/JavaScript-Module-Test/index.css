@@ -15,6 +15,7 @@
 .scoreDiv {
   margin: auto;
   margin-top: 2rem;
+  margin-bottom: 4rem;
   padding: 1rem;
   border: 1px solid white;
   border-radius: 5px;
@@ -64,4 +65,22 @@
   color: black;
   font-size: 2rem;
   text-align: center;
+}
+
+/* ================================ */
+
+#choiceDiv {
+  position: relative;
+}
+
+#triangle {
+  margin: auto;
+  /* background-color: white; */
+  /* width: 5rem;
+  height: 5rem; */
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14rem 10rem 0 10rem; /* Adjust size of the triangle by changing border-width values */
+  border-color: #000 transparent transparent transparent;
 }
