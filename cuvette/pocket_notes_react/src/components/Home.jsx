@@ -4,13 +4,17 @@ import RightSection from "./RightSection";
 import { mockData } from "../utils/mockData.js";
 
 const Home = () => {
-  const [showNotesSection, setShowNotesSection] = useState(true);
+  const [showNotesSection, setShowNotesSection] = useState(false);
   const [notesData, setNotesData] = useState(null);
 
   const [selectedNote, setSelectedNote] = useState({ id: null });
   const selectNote = (id) => {
-    console.log(id)
+    console.log(id);
     setSelectedNote(() => notesData.find((ele) => ele.id === id));
+    setShowNotesSection(true);
+  };
+
+  const goBack = () => {
     setShowNotesSection(false);
   };
 
@@ -29,16 +33,23 @@ const Home = () => {
   }
 
   return (
-    <div className="m-0 relative">
-      <LeftSection
-        className={`${!showNotesSection && "hidden"} `}
-        notes={notesData}
-        setSelectedNote={selectNote}
-      />
-      <RightSection
-        className={`${showNotesSection && "hidden"} `}
-        notes={notesData}
-      />
+    <div className="m-4 p-4 relative">
+      <div className={`${showNotesSection && "hidden"}`}>
+        <LeftSection
+          className=""
+          notes={notesData}
+          setSelectedNote={selectNote}
+        />
+      </div>
+
+      <div className={`${!showNotesSection && "hidden"}`}>
+        <RightSection
+          className={`bg-black`}
+          selectedNote={selectedNote}
+          notes={notesData}
+          setSelectedNote={goBack}
+        />
+      </div>
     </div>
   );
 };
