@@ -1,57 +1,90 @@
 import React, { useEffect, useState } from "react";
 import LeftSection from "./LeftSection";
 import RightSection from "./RightSection";
-import { mockData } from "../utils/mockData.js";
+import { notes } from "../utils/dummyData";
 
-const Home = () => {
-  const [showNotesSection, setShowNotesSection] = useState(false);
-  const [notesData, setNotesData] = useState(null);
+function Home() {
+  const [allNotes, setAllNotes] = useState(null);
+  const [selected, setSelected] = useState({ id: null });
 
-  const [selectedNote, setSelectedNote] = useState({ id: null });
-  const selectNote = (id) => {
-    console.log(id);
-    setSelectedNote(() => notesData.find((ele) => ele.id === id));
-    setShowNotesSection(true);
-  };
+  const [show, setShow] = useState(true);
 
-  const goBack = () => {
-    setShowNotesSection(false);
-  };
+  function addNewGroup(name, color) {
+    let id = Math.floor(Math.random() * 10000);
+    let obj = { id: id, groupName: name, color, notes: [] };
+    setAllNotes((prev) => [...prev, obj]);
+  }
+
+  function selectProfile(id) {
+    setSelected(() => allNotes.find((ele) => ele.id == id));
+    setShow(false);
+  }
+
+  function addNotesSelected(note) {
+    setSelected({ ...allNotes.find((ele) => ele.id == note) });
+  }
+
+  function addNotes(id, note) {
+    let date = new Date();
+    let time = date.toLocaleTimeString();
+    const options = { day: "numeric", month: "long", year: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
+    setAllNotes((prev) => {
+      let obj = prev.find((ele) => ele.id == id);
+      obj.notes.push({
+        time: { time, date: formattedDate },
+        note,
+      });
+      return prev;
+    });
+  }
 
   useEffect(() => {
-    let localNotes = localStorage.getItem("notesInLS");
-    if (localNotes !== null) {
-      let data = JSON.parse(localNotes);
-      setNotesData(data);
+    let localNotes = localStorage.getItem("pocketNotes");
+    if (localNotes != null) {
+      setAllNotes(JSON.parse(localNotes));
     } else {
-      setNotesData(mockData);
+      setAllNotes(notes);
     }
   }, []);
 
-  if (notesData === null) {
-    return <h1 className="text-3xl font-bold ">Loading...</h1>;
+  useEffect(() => {
+    if (allNotes != null) {
+      let notes = JSON.stringify(allNotes);
+      localStorage.setItem("pocketNotes", notes);
+    }
+  });
+
+  if (allNotes == null) {
+    return <h1 className='6xl'>Loading...</h1>;
   }
 
   return (
-    <div className="m-4 p-4 relative">
-      <div className={`${showNotesSection && "hidden"}`}>
+    <div className='sm:relative md:grid md:grid-cols-10 h-[100vh]'>
+      <div
+        className={`${
+          !show && "hidden"
+        } md:block md:col-span-3 p-5 pr-0 h-full overflow-x-scroll`}>
         <LeftSection
-          className=""
-          notes={notesData}
-          setSelectedNote={selectNote}
+          select={selected}
+          setSelected={selectProfile}
+          notes={allNotes}
+          addNewGroup={addNewGroup}
         />
       </div>
 
-      <div className={`${!showNotesSection && "hidden"}`}>
+      <div className={`${show && "hidden"} md:block md:col-span-7`}>
         <RightSection
-          className={`bg-black`}
-          selectedNote={selectedNote}
-          notes={notesData}
-          setSelectedNote={goBack}
+          setShow={setShow}
+          key={selected.id}
+          select={selected}
+          addNotesSelected={addNotesSelected}
+          notes={allNotes}
+          addNote={addNotes}
         />
       </div>
     </div>
   );
-};
+}
 
 export default Home;

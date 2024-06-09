@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import NotesShowingComponent from "./NotesShowingComponent";
+import React from "react";
+import NotSelected from "./NotSelected";
+import CreateNotes from "./CreateNotes";
 
-const RightSection = ({ selectedNote, notes, setSelectedNote }) => {
-  let [selectedNotesData, setSelectedNotesData] = useState(null);
-
-  useEffect(() => {
-    let data = notes.filter((ele) => ele.id === selectedNote.id);
-    // console.log("9 data", data);
-    setSelectedNotesData(data[0]);
-  }, [selectedNote.id]);
-
+function RightSection({ select, notes, addNote, addNotesSelected, setShow }) {
   return (
     <>
-      {selectedNote?.id === null ? (
-        <h1>no data</h1>
+      {select.id == null ? (
+        <NotSelected />
       ) : (
-        <NotesShowingComponent data={selectedNote} goBack={setSelectedNote} />
+        <CreateNotes
+          setShow={setShow}
+          addNotesSelected={addNotesSelected}
+          addNote={addNote}
+          notes={notes}
+          select={select}
+        />
       )}
     </>
   );
-};
+}
 
 export default RightSection;

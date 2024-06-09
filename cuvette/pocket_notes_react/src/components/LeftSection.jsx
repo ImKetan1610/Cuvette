@@ -1,24 +1,44 @@
-import React from "react";
-import ProfileName from "./ProfileName";
+import React, { useRef, useState } from "react";
+import Profile from "./Profile";
+import Modal from "./Modal";
 
-const LeftSection = ({ notes, setSelectedNote }) => {
-    // console.log(setSelectedNote);
+function LeftSection({ setSelected, select, notes, addNewGroup }) {
+  let [modal, setModal] = useState(false);
+
+  function openModal() {
+    setModal(true);
+  }
+
+  function closeModal() {
+    setModal(false);
+  }
+
+  function createGroupHandler() {
+    openModal();
+  }
+
   return (
     <>
-      <p className="font-bold text-3xl text-left m-0">Pocket Notes</p>
-      <button className="w-full my-3 py-2 font-semibold text-lg bg-black rounded-full text-white">
+      <h1 className='text-3xl font-semibold my-4'>Pocket Notes</h1>
+      <button
+        className='bg-black rounded-xl sm:w-11/12 text-white py-2 ml-2 px-4 my-4 text-2xl'
+        onClick={createGroupHandler}>
         + Create Notes Group
       </button>
-      {notes.map((note) => (
-        <ProfileName
-          key={note.id}
-          note={note}
-          setSelectedNote={setSelectedNote}
-          isShow={false}
+      {modal && <Modal show={modal} addNewGroup={addNewGroup} close={closeModal} />}
+      {notes.map((ele) => (
+        <Profile
+          select={select}
+          key={ele.id}
+          name={ele.groupName}
+          id={ele.id}
+          color={ele.color}
+          setSelected={setSelected}
+          notes={notes}
         />
       ))}
     </>
   );
-};
+}
 
 export default LeftSection;
